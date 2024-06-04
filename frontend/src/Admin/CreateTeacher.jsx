@@ -2,20 +2,23 @@ import React from 'react'
 import axios from 'axios'
 import { useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import Backbutton from './Backbutton';
-import Spinner from './Spinner';
+import Backbutton from '../components/Backbutton';
+import Spinner from '../components/Spinner';
 
 const CreateTeacher = () => {
     const [loading, setLoading] = useState(false);
     const [teacherName, setTeacherName] = useState("");
+    const [teacherUserName, setTeacherUserName] = useState("");
     const [teacherSubject, setTeacherSubject] = useState("");
     const [teacherDept, setTeacherDept] = useState("");
+    const [teacherPwd, setTeacherPwd] = useState("");
     const navigate =useNavigate();
     const handleSaveTeacher = () => {
         const data = {
           teacherName,
           teacherSubject,
-          teacherDept
+          teacherDept,
+          teacherPwd,teacherUserName
         };
         console.log('Data to be sent:', data);
         setLoading(true)
@@ -42,6 +45,15 @@ return (
           />
         </div>
         <div className="my-4">
+          <label className="text-xl mr-4 text-gray-500">Teacher Username</label>
+          <input
+            type="text"
+            value={teacherUserName}
+            onChange={(e) => setTeacherUserName(e.target.value)}
+            className="p-4 border-2 border-gray-500"
+          />
+        </div>
+        <div className="my-4">
           <label className="text-xl mr-4 text-gray-500">Teacher Department</label>
           <input
             type="text"
@@ -56,6 +68,15 @@ return (
             type="text"
             value={teacherSubject}
             onChange={(e) => setTeacherSubject(e.target.value)}
+            className="p-4 border-2 border-gray-500"
+          />
+        </div>
+        <div className="my-4">
+          <label className="text-xl mr-4 text-gray-500">Teacher Password</label>
+          <input
+            type="password"
+            value={teacherPwd}
+            onChange={(e) => setTeacherPwd(e.target.value)}
             className="p-4 border-2 border-gray-500"
           />
         </div>

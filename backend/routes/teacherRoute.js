@@ -1,37 +1,37 @@
 import express from "express"
 const app = express.Router();
-import {Admin} from "../models/Admin/adminModel.js"
-import bcrypt from "bcrypt"
+import { Teacher } from "../models/Teacher/teacherModel.js";
+import { Admin } from "../models/Admin/adminModel.js";
+import bcrypt from 'bcrypt'
+
 
 // Route to create a new teacher and save
 app.post("/", async (req, res) => {
   try {
-      console.log(req.body);
-      const { teacherName, teacherSubject, teacherDept, teacherPwd,teacherUserName } = req.body;
+    const { teacherUserName, teacherPwd } = req.body;
 
-      if (!teacherSubject || !teacherName || !teacherDept || !teacherPwd||!teacherUserName) {
-          return res.status(400).send({ message: "All fields are required" });
-      }
+    if (!teacherUserName || !teacherPwd) {
+      return res.status(400).send({ message: "All fields are required" });
+    }
 
-      const hashedPassword = await bcrypt.hash(teacherPwd, 10);
+    const tusername = await Admin.findOne({ teacherUserName });
 
-      const newTeacher = new Admin({
-          teacherName,
-          teacherSubject,
-          teacherDept,
-          teacherPwd: hashedPassword, // Save the hashed password
-          teacherUserName
-      });
+    if (!tusername) {
+      return res.status(401).send({ message: "Invalid username or password" });
+    }
 
-      console.log(hashedPassword);
+    const isMatch = await bcrypt.compare(teacherPwd, tusername.teacherPwd);
 
-      const savedTeacher = await newTeacher.save();
-      return res.status(201).send(savedTeacher);
+    if (isMatch) {
+      return res.status(200).send({ message: "Authentication successful", teacherUserName: tusername.teacherUserName });
+    } else {
+      return res.status(401).send({ message: "Invalid username or password" });
+    }
   } catch (error) {
-      console.log(error);
-      return res.status(500).send({ message: error.message });
+    console.error(error);
+    return res.status(500).send({ message: error.message });
   }
-});
+  });
 
 
   // Route to get all teachers
@@ -73,15 +73,15 @@ app.get("/", async (req, res) => {
 
   app.put("/:id", async (req, res) => {
     try {
-        const { teacherName,teacherSubject,teacherDept,teacherPwd,teacherUserName } = req.body;
+        const { teacherName,teacherSubject,teacherDept } = req.body;
   
-      if (!teacherDept || !teacherName || !teacherSubject||!teacherPwd) {
+      if (!teacherDept || !teacherName || !teacherSubject) {
         return res.status(400).send({ message: "All fields are required" });
       }
   
       const { id } = req.params;
       const updatedTeacher = await Admin.findByIdAndUpdate(id, {
-        teacherName,teacherDept,teacherSubject,teacherPwd,teacherUserName
+        teacherName,teacherDept,teacherSubject
       }, { new: true });
   
       if (!updatedTeacher) {
@@ -116,3 +116,4 @@ app.delete("/:id", async (req, res) => {
   
   export default app;
   
+//TODO:GET BACK HERE

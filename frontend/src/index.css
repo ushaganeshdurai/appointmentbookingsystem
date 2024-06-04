@@ -3,5 +3,10 @@
 @tailwind utilities;
 
 body{
-    background-color: rgb(8, 8, 77);
+    background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,121,121,0.9710084717480743) 0%, rgba(0,212,255,1) 79%);
+}
+
+.bkground{
+    background:url('https://storage.googleapis.com/devitary-image-host.appspot.com/15848031292911696601-undraw_designer_life_w96d.svg');
 }

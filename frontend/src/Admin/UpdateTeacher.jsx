@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import { useParams,useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import Spinner from './Spinner'
-import Backbutton from './Backbutton'
+import Spinner from '../components/Spinner'
+import Backbutton from '../components/Backbutton'
 const UpdateTeacher = () => {
   const [teacherDept, setTeacherDept] = useState("");
   const [teacherName, setTeacherName] = useState("");
@@ -15,7 +15,7 @@ const UpdateTeacher = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/admin/teachers${id}`)
+      .get(`http://localhost:5000/admin/teachers/${id}`)
       .then((response) => {
         setTeacherDept(response.data.teacherDept);
         setTeacherName(response.data.teacherName);
@@ -38,7 +38,7 @@ const UpdateTeacher = () => {
     setLoading(true);
     //to access books use post
     axios
-      .put(`http://localhost:5000/admin/teachers${id}`, data)
+      .put(`http://localhost:5000/admin/teachers/${id}`, data)
       .then(() => {
         setLoading(true);
         navigate("/admin");

@@ -3,7 +3,7 @@ import CreateTeacher from './CreateTeacher'
 import UpdateTeacher from './UpdateTeacher'
 import {useState,useEffect} from "react"
 import axios from 'axios'
-import Spinner from './Spinner'
+import Spinner from '../components/Spinner'
 import { Link } from 'react-router-dom'
 import DeleteTeacher from './DeleteTeacher'
 import {MdOutlineAddBox }from "react-icons/md"
@@ -54,7 +54,7 @@ const Admin = () => {
               <tr key={teacher._id}>
                 <td className=" rounded-md text-center">{teacher.teacherName}
                 </td>
-                <td className=" rounded-md text-center max-md:hidden">{teacher.teacherDepartment}</td>
+                <td className=" rounded-md text-center max-md:hidden">{teacher.teacherDept}</td>
                 <td className=" rounded-md text-center max-md:hidden">{teacher.teacherSubject}</td>
                 <td className=" rounded-md text-center">
                   <div className="flex justify-center gap-x-4">

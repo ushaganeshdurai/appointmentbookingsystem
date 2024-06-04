@@ -31,7 +31,7 @@ const App = () => {
     </div>
   
     <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-        <a href="#">
+        <Link to="/teacher">
             <img src="https://static.vecteezy.com/system/resources/previews/004/654/732/non_2x/young-woman-teacher-teaching-cartoon-character-free-vector.jpg"
                     alt="Product" className="h-80 w-72 object-cover rounded-t-xl" />
             <div className="px-4 py-3 w-72">
@@ -44,7 +44,7 @@ const App = () => {
                     </ul>
                 </div>
             </div>
-        </a>
+        </Link>
     </div>
     
     <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
