@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 const teacherSchema = new mongoose.Schema({
-  Subject: {
+  username:{
+    type:String
+  },
+  subject: {
     type: String,
     required: true,
   },
@@ -9,7 +12,7 @@ const teacherSchema = new mongoose.Schema({
     required: true,
   },
   timings:{
-type:Date
+type:String,required:true
   },
   
 });

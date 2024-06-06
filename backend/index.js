@@ -19,14 +19,14 @@ app.get("/admin",(req,res)=>{
     console.log(req);
     return res.status(234);
 })
-
+app.use("/admin/teachers",adminRoute)
 //general teacher url
 app.get("/teacher",(req,res)=>{
   console.log(req);
   return res.status(234);
 })
 
-app.use("/admin/teachers",adminRoute)
+
 
 app.use("/teacher/scheduleappointment",teacherRoute)
 

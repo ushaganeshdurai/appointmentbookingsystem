@@ -1,10 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+import ScheduleAppointment from './Teacher/ScheduleAppointment.jsx'
 import './index.css'
+import ViewAppointments from './Teacher/ViewAppointments.jsx'
 import {BrowserRouter,Routes,Route} from "react-router-dom"
 import TeacherLogin from './Teacher/TeacherLogin.jsx'
-import ScheduleAppointment from './Teacher/ScheduleAppointment.jsx'
+import TeacherPage from './Teacher/TeacherPage.jsx'
 
 import Student from './components/Student.jsx'
 import CreateTeacher from './Admin/CreateTeacher.jsx'
@@ -17,7 +19,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Routes>
     <Route path="/" element={<App />} />
     <Route path="/teacher" element={<TeacherLogin />} />
-    <Route path="/teacher/scheduleappointment/:teacherUserName" element={<ScheduleAppointment />} />
+    <Route path="/teacher/scheduleappointment/:teacherUserName" element={<TeacherPage />} />
+    <Route path="/teacher/scheduleappointment/:teacherUserName/scheduleappt" element={<ScheduleAppointment/>} />
+    <Route path="/teacher/scheduleappointment/:teacherUserName/viewAppt" element={<ViewAppointments/>} />
     <Route path="/admin" element={<Admin />} />
     <Route path="/admin/teachers/create" element={<CreateTeacher />} />
     {/* <Route path="/admin/teachers/details/:id" element={<ShowTeacher />} /> */}

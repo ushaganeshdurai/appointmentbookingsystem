@@ -48,13 +48,30 @@ app.get("/", async (req, res) => {
     }
   });
 
+  app.post("/:teacherUserName/scheduleappt", async (req, res) => {
+    const {date, subject, timings} = req.body;
+    console.log(req.body);
+    try {
+        const newAppointment = new Teacher({
+            date,
+            subject,
+            timings
+        });
+        const savedAppointment = await newAppointment.save();
+        console.log("saved appointment");
+        return res.status(201).send(savedAppointment);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send("Internal Server Error");
+    }
+});
 
   //Route to get info about single teacher by ID
 
-  app.get("/:id", async (req, res) => {
+  app.get("/:teacherUserName/viewAppt", async (req, res) => {
     try {
-      const { id } = req.params;
-      const teacher = await Admin.findById(id);
+      const {teacherUserName} = req.params;
+      const teacher = await Admin.findById({username:Usha2004});
   
       if (!teacher) {
         return res.status(404).send({ message: "teacher not found" });

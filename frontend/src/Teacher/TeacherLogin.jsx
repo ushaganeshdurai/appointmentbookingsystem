@@ -29,7 +29,7 @@ const handleAuthTeacher = async () => {
       } else {
         console.error('Authentication failed:', response.data.message);
         toast("Authentication failed Please try again");
-        <ToastContainer />
+
       }
     } catch (error) {
       setLoading(false);

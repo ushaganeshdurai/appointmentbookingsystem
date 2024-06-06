@@ -18,7 +18,8 @@ const CreateTeacher = () => {
           teacherName,
           teacherSubject,
           teacherDept,
-          teacherPwd,teacherUserName
+          teacherPwd,
+          teacherUserName
         };
         console.log('Data to be sent:', data);
         setLoading(true)
