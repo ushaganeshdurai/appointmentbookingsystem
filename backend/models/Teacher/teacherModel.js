@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 const teacherSchema = new mongoose.Schema({
   username:{
-    type:String
+    type:String,
+    required:true
   },
   subject: {
     type: String,

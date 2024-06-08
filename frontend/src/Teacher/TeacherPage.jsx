@@ -17,7 +17,7 @@ const TeacherPage = () => {
     </div>
   
     <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-        <Link to="/teacher/scheduleappointment/:teacherUserName/viewAppt">
+        <Link to="/teacher/scheduleappointment/${username}/viewAppt">
             <img src="https://as2.ftcdn.net/v2/jpg/01/99/85/21/1000_F_199852162_WgY30vcUYKczx9MmcG7SRJSUBfeSWcQt.jpg"
                     alt="Product" className="h-80 w-72 object-cover rounded-t-xl" />
             <div className="px-4 py-3 w-72">

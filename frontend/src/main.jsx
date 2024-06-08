@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Route path="/teacher" element={<TeacherLogin />} />
     <Route path="/teacher/scheduleappointment/:teacherUserName" element={<TeacherPage />} />
     <Route path="/teacher/scheduleappointment/:teacherUserName/scheduleappt" element={<ScheduleAppointment/>} />
-    <Route path="/teacher/scheduleappointment/:teacherUserName/viewAppt" element={<ViewAppointments/>} />
+    <Route path="/teacher/scheduleappointment/:username/viewAppt" element={<ViewAppointments/>} />
     <Route path="/admin" element={<Admin />} />
     <Route path="/admin/teachers/create" element={<CreateTeacher />} />
     {/* <Route path="/admin/teachers/details/:id" element={<ShowTeacher />} /> */}

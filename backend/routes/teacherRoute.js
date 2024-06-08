@@ -68,10 +68,10 @@ app.get("/", async (req, res) => {
 
   //Route to get info about single teacher by ID
 
-  app.get("/:teacherUserName/viewAppt", async (req, res) => {
+  app.get("/:username/viewAppt", async (req, res) => {
     try {
-      const {teacherUserName} = req.params;
-      const teacher = await Admin.findById({username:Usha2004});
+      const {username}=req.params;
+      const teacher = await Teacher.findOne({username});
   
       if (!teacher) {
         return res.status(404).send({ message: "teacher not found" });
