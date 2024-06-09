@@ -136,4 +136,3 @@ app.delete("/:teacherUserName/viewAppt/cancel/:apptid", async (req, res) => {
   
   export default app;
   
-//TODO:GET BACK HERE

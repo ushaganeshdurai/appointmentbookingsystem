@@ -82,24 +82,5 @@ export default Admin
 
 
 
-{/* <CreateTeacher />
-    <UpdateTeacher />
-    <DeleteTeacher /> */}
 
 
-
-    // <Route path="/admin" element={<Admin />} />
-    // <Route path="/admin/teachers/create" element={<CreateTeacher />} />
-    // <Route path="/admin/teachers/details/:id" element={<ShowTeacher />} />
-    // <Route path="/admin/teachers/edit/:id" element={<UpdateTeacher />} />
-    // <Route path="/admin/teachers/delete/:id" element={<DeleteTeacher />} />.
-
-
-
-
-
-
-
-
-
-    //TODO: GET back here..
