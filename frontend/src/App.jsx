@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from "axios";
 import {Link} from "react-router-dom"
 
 
@@ -15,8 +14,8 @@ const App = () => {
     className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
     <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <Link to="/admin">
-            <img src="https://p.kindpng.com/picc/s/247-2472283_transparent-admin-png-marketing-girl-cartoon-png-png.png"
-                    alt="Product" className="h-80 w-72 object-cover rounded-t-xl" />
+            <img src="https://png.pngtree.com/png-vector/20221124/ourmid/pngtree-recruitment-job-for-social-media-admin-png-image_6478542.png"
+                    alt="Role" className="h-80 w-72 object-cover rounded-t-xl" />
             <div className="px-4 py-3 w-72">
                 <p className="text-lg font-bold text-black truncate block capitalize">Administrator</p>
                 <div className="flex items-center">
@@ -33,7 +32,7 @@ const App = () => {
     <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <Link to="/teacher">
             <img src="https://static.vecteezy.com/system/resources/previews/004/654/732/non_2x/young-woman-teacher-teaching-cartoon-character-free-vector.jpg"
-                    alt="Product" className="h-80 w-72 object-cover rounded-t-xl" />
+                    alt="Role" className="h-80 w-72 object-cover rounded-t-xl" />
             <div className="px-4 py-3 w-72">
                 <p className="text-lg font-bold text-black truncate block capitalize">Teacher</p>
                 <div className="flex items-center">
@@ -48,9 +47,9 @@ const App = () => {
     </div>
     
     <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-        <a href="#">
+        <a href="/student">
             <img src="https://img.freepik.com/free-vector/cute-happy-smiling-child-isolated-white-background_1308-68855.jpg"
-                    alt="Product" className="h-80 w-72 object-cover rounded-t-xl" />
+                    alt="Role" className="h-80 w-72 object-cover rounded-t-xl" />
             <div className="px-4 py-3 w-72">
                 <p className="text-lg font-bold text-black truncate block capitalize">Student</p>
                 <div className="flex items-center">

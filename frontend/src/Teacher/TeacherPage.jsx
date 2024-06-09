@@ -1,7 +1,12 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const TeacherPage = () => {
+    const navigate = useNavigate();
     const {teacherUserName}=useParams();
+    const handlelogout=()=>{
+navigate("/teacher");
+    }
   return (
     <div>
       <h1>Choose an action:</h1>
@@ -10,7 +15,7 @@ const TeacherPage = () => {
     <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <Link to={`/teacher/scheduleappointment/${teacherUserName}/scheduleappt`}>
             <img src="https://i.pinimg.com/736x/ef/64/8f/ef648fe0c7232614bbdef5870c5d8eab.jpg"
-                    alt="Product" className="h-80 w-72 object-cover rounded-t-xl" />
+                    alt="Role" className="h-80 w-72 object-cover rounded-t-xl" />
             <div className="px-4 py-3 w-72">
                 <p className="text-lg font-bold text-black truncate block capitalize">Schedule an appiontment</p>
             </div>
@@ -20,7 +25,7 @@ const TeacherPage = () => {
     <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <Link to={`/teacher/scheduleappointment/${teacherUserName}/viewAppt`}>
             <img src="https://as2.ftcdn.net/v2/jpg/01/99/85/21/1000_F_199852162_WgY30vcUYKczx9MmcG7SRJSUBfeSWcQt.jpg"
-                    alt="Product" className="h-80 w-72 object-cover rounded-t-xl" />
+                    alt="Role" className="h-80 w-72 object-cover rounded-t-xl" />
             <div className="px-4 py-3 w-72">
                 <p className="text-lg font-bold text-black truncate block capitalize">View all appointments</p>
 
@@ -29,6 +34,7 @@ const TeacherPage = () => {
     </div>
     
 </div>
+<button className='bg-black rounded-lg text-white' onClick={handlelogout}>LOG OUT</button>
     </div>
 
 

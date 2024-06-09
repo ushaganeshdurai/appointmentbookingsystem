@@ -1,16 +1,16 @@
 import React from 'react'
-import CreateTeacher from './CreateTeacher'
-import UpdateTeacher from './UpdateTeacher'
+
 import {useState,useEffect} from "react"
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 import Spinner from '../components/Spinner'
 import { Link } from 'react-router-dom'
-import DeleteTeacher from './DeleteTeacher'
+import Backbutton from '../components/Backbutton'
 import {MdOutlineAddBox }from "react-icons/md"
 import {AiOutlineEdit,AiOutlineDelete} from "react-icons/ai"
 
 const Admin = () => {
-
+const navigate = useNavigate();
   const [teachers, setTeachers] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -31,6 +31,7 @@ const Admin = () => {
 
   return (<>
     <div className="p-4">
+      <Backbutton />
       <div className="flex justify-between items-center">
         <h1>Teachers List</h1>
         <Link to="/admin/teachers/create">
