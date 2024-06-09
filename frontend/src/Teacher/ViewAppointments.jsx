@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
+import { AiOutlineMail } from 'react-icons/ai';
 
 const ViewAppointments = () => {
   const { teacherUserName } = useParams();
-  const [teacher, setTeacher] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [apps, setApps] = useState([]);
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (teacherUserName) {
@@ -16,7 +20,12 @@ const ViewAppointments = () => {
         .get(`http://localhost:5000/teacher/scheduleappointment/${teacherUserName}/viewAppt`)
         .then((response) => {
           console.log("Response received:", response.data);
-          setTeacher(response.data); // Set the teacher object
+          if (Array.isArray(response.data)) {
+            setApps(response.data);
+            console.log("Appointments data:", response.data);
+          } else {
+            setError('Invalid response format');
+          }
           setLoading(false);
         })
         .catch((error) => {
@@ -27,6 +36,20 @@ const ViewAppointments = () => {
     }
   }, [teacherUserName]);
 
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleMessageChange = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleEmailSubmit = (e) => {
+    e.preventDefault();
+    const mailtoLink = `mailto:${email}?subject=Appointment Details&body=${encodeURIComponent(message)}`;
+    window.location.href = mailtoLink;
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -35,19 +58,63 @@ const ViewAppointments = () => {
     return <p>{error}</p>;
   }
 
-  if (!teacher) {
+  if (!apps.length) {
     return <p>No appointments found.</p>;
   }
 
   return (
-    <div>
-      <label htmlFor="">Subject Chosen</label>
-      <h1 className="rounded-md text-center">{teacher.subject}</h1>
-      <label htmlFor="">Scheduled date</label>
-      <h1 className="rounded-md text-center max-md:hidden">{teacher.date}</h1>
-      <label htmlFor="">Timings:</label>
-      <h1 className="rounded-md text-center max-md:hidden">{teacher.timings}</h1>
-    </div>
+    <>
+      <table className="w-full">
+        <thead>
+          <tr>
+            <th className="rounded-md max-md:hidden">Subject</th>
+            <th className="rounded-md">Date</th>
+            <th className="rounded-md max-md:hidden">Timings</th>
+            <th className="rounded-md max-md:hidden">Student's email id</th>
+            <th className="rounded-md max-md:hidden">Student's name</th>
+            <th className="rounded-md">Operations</th>
+          </tr>
+        </thead>
+        <tbody>
+          {apps.map((apptmnt) => (
+            <tr key={apptmnt._id}>
+              <td className="rounded-md text-center">{apptmnt.subject}</td>
+              <td className="rounded-md text-center">{apptmnt.date}</td>
+              <td className="rounded-md text-center max-md:hidden">{apptmnt.timings}</td>
+              <td className="rounded-md text-center max-md:hidden">{apptmnt.studentMail}</td>
+              <td className="rounded-md text-center max-md:hidden">{apptmnt.student}</td>
+              <td className="rounded-md text-center">
+                <div className="flex justify-center gap-x-4">
+                  <Link to={`/teachers/scheduleappointment/${apptmnt._id}`}>
+                    <AiOutlineDelete />
+                  </Link>
+                  <a href={`mailto:${apptmnt.studentMail}?subject=Appointment Reminder&body=Dear ${apptmnt.student},\n\nThis is a reminder for your upcoming appointment for ${apptmnt.subject} on ${apptmnt.date} at ${apptmnt.timings}.`}>
+                    <AiOutlineMail />
+                  </a>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* <form  onSubmit={handleEmailSubmit}>
+        <input  className='block mb-3'
+          type="email" 
+          placeholder="Student's email" 
+          value={email} 
+          onChange={handleEmailChange} 
+          required 
+        />
+        <textarea  className='block mb-3'
+          placeholder="Your message" 
+          value={message} 
+          onChange={handleMessageChange} 
+          required
+        ></textarea>
+        <input type="submit" className='bg-black text-white p-6' value="Send" />
+      </form> */}
+    </>
   );
 };
 

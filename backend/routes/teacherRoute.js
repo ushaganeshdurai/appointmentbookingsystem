@@ -49,13 +49,13 @@ app.get("/", async (req, res) => {
   });
 
   app.post("/:teacherUserName/scheduleappt", async (req, res) => {
-    const {date, subject, timings} = req.body;
+    const {date, subject, timings,username,student,studentMail} = req.body;
     console.log(req.body);
     try {
         const newAppointment = new Teacher({
             date,
             subject,
-            timings
+            timings,username,student,studentMail
         });
         const savedAppointment = await newAppointment.save();
         console.log("saved appointment");
@@ -72,7 +72,8 @@ app.get("/", async (req, res) => {
     try {
       const {teacherUserName}=req.params;
       console.log(teacherUserName);
-      const teacher = await Teacher.findOne({username:teacherUserName});
+      // const teacher = await Teacher.findOne({username:teacherUserName});
+      const teacher=await Teacher.find({username:teacherUserName})
   
       if (!teacher) {
         return res.status(404).send({ message: "teacher not found" });

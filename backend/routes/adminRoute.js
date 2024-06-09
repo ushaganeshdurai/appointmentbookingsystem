@@ -19,7 +19,7 @@ app.post("/", async (req, res) => {
           teacherName,
           teacherSubject,
           teacherDept,
-          teacherPwd: hashedPassword, // Save the hashed password
+          teacherPwd: hashedPassword, 
           teacherUserName
       });
 

@@ -15,6 +15,12 @@ const teacherSchema = new mongoose.Schema({
   timings:{
 type:String,required:true
   },
+  student:{
+    type:String,required:true
+  },
+  studentMail:{
+type:String,required:true
+  }
   
 });
 
