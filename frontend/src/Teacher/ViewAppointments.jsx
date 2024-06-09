@@ -85,7 +85,7 @@ const ViewAppointments = () => {
               <td className="rounded-md text-center max-md:hidden">{apptmnt.student}</td>
               <td className="rounded-md text-center">
                 <div className="flex justify-center gap-x-4">
-                  <Link to={`/teachers/scheduleappointment/${apptmnt._id}`}>
+                  <Link to={`/teacher/scheduleappointment/${teacherUserName}/viewAppt/cancel/${apptmnt._id}`}>
                     <AiOutlineDelete />
                   </Link>
                   <a href={`mailto:${apptmnt.studentMail}?subject=Appointment Reminder&body=Dear ${apptmnt.student},\n\nThis is a reminder for your upcoming appointment for ${apptmnt.subject} on ${apptmnt.date} at ${apptmnt.timings}.`}>

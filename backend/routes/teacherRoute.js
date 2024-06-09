@@ -3,7 +3,7 @@ const app = express.Router();
 import { Teacher } from "../models/Teacher/teacherModel.js";
 import { Admin } from "../models/Admin/adminModel.js";
 import bcrypt from 'bcrypt'
-
+//common route: teacher/scheduleappoitment
 
 // Route to create a new teacher and save
 app.post("/", async (req, res) => {
@@ -116,13 +116,14 @@ app.get("/", async (req, res) => {
 
 
 
-// Route to delete a book by ID
-app.delete("/:id", async (req, res) => {
+// Route to delete an appointment by ID
+app.delete("/:teacherUserName/viewAppt/cancel/:apptid", async (req, res) => {
     try {
-      const { id } = req.params;
-      const deletedTeacher = await Admin.findByIdAndDelete(id);
+      const { teacherUserName } = req.params;
+      const { apptid } = req.params;
+      const deletedAppointment = await Teacher.findByIdAndDelete(apptid);
   
-      if (!deletedTeacher) {
+      if (!deletedAppointment) {
         return res.status(404).send({ message: "Teacher not found" });
       }
   

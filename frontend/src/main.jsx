@@ -13,6 +13,7 @@ import CreateTeacher from './Admin/CreateTeacher.jsx'
 import UpdateTeacher from './Admin/UpdateTeacher.jsx'
 import DeleteTeacher from './Admin/DeleteTeacher.jsx'
 import Admin from './Admin/Admin.jsx'
+import CancelAppointment from './Teacher/CancelAppointment.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Route path="/teacher/scheduleappointment/:teacherUserName" element={<TeacherPage />} />
     <Route path="/teacher/scheduleappointment/:teacherUserName/scheduleappt" element={<ScheduleAppointment/>} />
     <Route path="/teacher/scheduleappointment/:teacherUserName/viewAppt" element={<ViewAppointments/>} />
+    <Route path="/teacher/scheduleappointment/:teacherUserName/viewAppt/cancel/:apptid" element={<CancelAppointment />} />
     <Route path="/admin" element={<Admin />} />
     <Route path="/admin/teachers/create" element={<CreateTeacher />} />
     {/* <Route path="/admin/teachers/details/:id" element={<ShowTeacher />} /> */}
