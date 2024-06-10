@@ -3,29 +3,29 @@ const app = express.Router();
 import { Teacher } from "../models/Teacher/teacherModel.js";
 import { Admin } from "../models/Admin/adminModel.js";
 import bcrypt from "bcrypt";
-//common route: teacher/scheduleappoitment
+//common route: student
 
-// Route to create a new teacher and save
+// Route to create a new student and save
 app.post("/", async (req, res) => {
   try {
-    const { teacherUserName, teacherPwd } = req.body;
+    const { studentUserName, studentPwd,studentMail } = req.body;
 
-    if (!teacherUserName || !teacherPwd) {
+    if (!studentUserName || !studentPwd) {
       return res.status(400).send({ message: "All fields are required" });
     }
 
-    const tusername = await Admin.findOne({ teacherUserName });
+    const stdusername = await Admin.findOne({ studentUserName });
 
-    if (!tusername) {
+    if (!stdusername) {
       return res.status(401).send({ message: "Invalid username or password" });
     }
 
-    const isMatch = await bcrypt.compare(teacherPwd, tusername.teacherPwd);
+    const isMatch = await bcrypt.compare(studentPwd, stdusername.studentPwd);
 
     if (isMatch) {
       return res.status(200).send({
         message: "Authentication successful",
-        teacherUserName: tusername.teacherUserName,
+        studentUserName: stdusername.studentUserName,
       });
     } else {
       return res.status(401).send({ message: "Invalid username or password" });
@@ -50,14 +50,11 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.post("/:teacherUserName/scheduleappt", async (req, res) => {
-  const { date, subject, timings, username, student, studentMail } = req.body;
+app.post("/:studentUserName/bookappt", async (req, res) => {
+  const { username, student, studentMail } = req.body;
   console.log(req.body);
   try {
     const newAppointment = new Teacher({
-      date,
-      subject,
-      timings,
       username,
       student,
       studentMail,
@@ -91,37 +88,7 @@ app.get("/:teacherUserName/viewAppt", async (req, res) => {
   }
 });
 
-// Route to update a teacher by ID
 
-app.put("/:id", async (req, res) => {
-  try {
-    const { teacherName, teacherSubject, teacherDept } = req.body;
-
-    if (!teacherDept || !teacherName || !teacherSubject) {
-      return res.status(400).send({ message: "All fields are required" });
-    }
-
-    const { id } = req.params;
-    const updatedTeacher = await Admin.findByIdAndUpdate(
-      id,
-      {
-        teacherName,
-        teacherDept,
-        teacherSubject,
-      },
-      { new: true }
-    );
-
-    if (!updatedTeacher) {
-      return res.status(404).send({ message: "Teacher not found" });
-    }
-
-    return res.status(200).send(updatedTeacher);
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send({ message: error.message });
-  }
-});
 
 // Route to delete an appointment by ID
 app.delete("/:teacherUserName/viewAppt/cancel/:apptid", async (req, res) => {

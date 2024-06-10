@@ -34,6 +34,37 @@ app.post("/", async (req, res) => {
 });
 
 
+
+
+app.post("/", async (req, res) => {
+  try {
+      console.log(req.body);
+      const {  studentMail,studentPwd,studentUserName } = req.body;
+
+      if (!studentMail || !studentPwd || !studentUserName) {
+          return res.status(400).send({ message: "All fields are required" });
+      }
+
+      const hashedPassword = await bcrypt.hash(studentPwd, 10);
+
+      const newStudent = new Admin({
+          studentUserName,
+          studentMail,
+          studentPwd: hashedPassword
+      });
+
+      console.log(hashedPassword);
+
+      const savedStudent = await newStudent.save();
+      return res.status(201).send(savedStudent);
+  } catch (error) {
+      console.log(error);
+      return res.status(500).send({ message: error.message });
+  }
+});
+
+
+
   // Route to get all teachers
 app.get("/", async (req, res) => {
     try {
