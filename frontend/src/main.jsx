@@ -40,8 +40,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 
 //student routes
-    <Route path="/student" element={<Student />} />
-    <Route path="/student:studentUserName" element={<StudentRegistration />} />
+    <Route path="/student/studentcreate" element={<Student />} />
+    <Route path="/student/:studentUserName" element={<StudentRegistration />} />
   </Routes>
   </BrowserRouter>
 )

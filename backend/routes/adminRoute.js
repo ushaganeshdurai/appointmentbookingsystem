@@ -1,7 +1,8 @@
 import express from "express"
 const app = express.Router();
 import {Admin} from "../models/Admin/adminModel.js"
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
+import {Student} from "../models/Student/studentModel.js"
 
 // Route to create a new teacher and save
 app.post("/", async (req, res) => {
@@ -34,21 +35,22 @@ app.post("/", async (req, res) => {
 });
 
 
+//get student details and store
 
-
-app.post("/", async (req, res) => {
+app.post("/studentcreate", async (req, res) => {
   try {
       console.log(req.body);
-      const {  studentMail,studentPwd,studentUserName } = req.body;
+      const {  studentMail,studentPwd,studentUserName,name } = req.body;
 
-      if (!studentMail || !studentPwd || !studentUserName) {
+      if (!studentMail || !studentPwd || !studentUserName||!name) {
           return res.status(400).send({ message: "All fields are required" });
       }
 
       const hashedPassword = await bcrypt.hash(studentPwd, 10);
 
-      const newStudent = new Admin({
+      const newStudent = new Student({
           studentUserName,
+          name,
           studentMail,
           studentPwd: hashedPassword
       });
@@ -56,7 +58,7 @@ app.post("/", async (req, res) => {
       console.log(hashedPassword);
 
       const savedStudent = await newStudent.save();
-      return res.status(201).send(savedStudent);
+      return res.status(200).send(savedStudent);
   } catch (error) {
       console.log(error);
       return res.status(500).send({ message: error.message });

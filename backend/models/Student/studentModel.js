@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 const studentSchema = new mongoose.Schema({
-  username: {
+  studentUserName: {
     type: String,
     required: true,
   },
-  student: {
+  name: {
     type: String,
     required: true,
   },
@@ -12,6 +12,10 @@ const studentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  studentPwd:{
+    type:String,
+    required:true
+  }
 });
 
 export const Student = mongoose.model("Student", studentSchema);

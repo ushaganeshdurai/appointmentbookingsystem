@@ -18,6 +18,7 @@ app.get("/admin", (req, res) => {
   return res.status(234);
 });
 app.use("/admin/teachers", adminRoute);
+app.use("/student", adminRoute);
 //general teacher url
 app.get("/teacher", (req, res) => {
   console.log(req);
@@ -26,7 +27,7 @@ app.get("/teacher", (req, res) => {
 
 app.use("/teacher/scheduleappointment", teacherRoute);
 
-app.use("/student",studentRoute)
+
 
 mongoose
   .connect(process.env.MONGOD_URL)
