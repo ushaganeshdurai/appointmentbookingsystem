@@ -1,17 +1,16 @@
 import express from "express";
-const app = express.Router();
 import { Teacher } from "../models/Teacher/teacherModel.js";
-import { Admin } from "../models/Admin/adminModel.js";
 import bcrypt from "bcrypt";
 import { Student } from "../models/Student/studentModel.js";
-//common route: student/login
-//common route: student/:studentUserName
+
+
+const app = express.Router();
 
 // Route to create a new student and save
 app.post("/", async (req, res) => {
   try {
-    const { studentUserName, studentPwd} = req.body;
-    console.log(studentUserName,studentPwd);
+    const { studentUserName, studentPwd } = req.body;
+    console.log(studentUserName, studentPwd);
 
     if (!studentUserName || !studentPwd) {
       return res.status(400).send({ message: "All fields are required" });
@@ -53,19 +52,21 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.get("/bookapt", async (req, res) => {
+// Route to get available teachers based on subject
+app.post("/bookapt", async (req, res) => {
   const { subject } = req.body;
   console.log(req.body);
   try {
-    const availablesubjects = await Teacher.find({subject:subject});
-    console.log("found available subjects");
-    return res.status(200).send(availablesubjects);
+    if (!subject) {
+      return res.status(400).send({ message: "Subject is required" });
+    }
+    const availableSubjects = await Teacher.find({ subject: subject });
+    console.log("Found available subjects", availableSubjects);
+    return res.status(200).send(availableSubjects);
   } catch (error) {
     console.error(error);
     return res.status(500).send("Internal Server Error");
   }
 });
-
-
 
 export default app;

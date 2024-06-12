@@ -36,19 +36,12 @@ const ViewAppointments = () => {
     }
   }, [teacherUserName]);
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
   };
 
-  const handleEmailSubmit = (e) => {
-    e.preventDefault();
-    const mailtoLink = `mailto:${email}?subject=Appointment Details&body=${encodeURIComponent(message)}`;
-    window.location.href = mailtoLink;
-  };
+ 
 
   if (loading) {
     return <p>Loading...</p>;
