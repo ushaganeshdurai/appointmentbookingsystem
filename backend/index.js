@@ -18,7 +18,12 @@ app.get("/admin", (req, res) => {
   return res.status(234);
 });
 app.use("/admin/teachers", adminRoute);
+
+
+
 app.use("/student", adminRoute);
+app.use("/student/login", studentRoute);
+app.use("/student/:studentUserName", studentRoute);
 //general teacher url
 app.get("/teacher", (req, res) => {
   console.log(req);

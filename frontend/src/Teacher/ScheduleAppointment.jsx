@@ -34,7 +34,7 @@ const ScheduleAppointment = () => {
     
 
 
-<div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+<div class="max-w-sm p-6 bg-white border ml-[400px] border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 <label
             htmlFor="large-input"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"

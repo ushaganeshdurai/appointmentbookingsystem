@@ -13,7 +13,8 @@ import UpdateTeacher from './Admin/UpdateTeacher.jsx'
 import DeleteTeacher from './Admin/DeleteTeacher.jsx'
 import Admin from './Admin/Admin.jsx'
 import CancelAppointment from './Teacher/CancelAppointment.jsx'
-import StudentRegistration from './Student/StudentRegistration.jsx'
+import StudentRegistered from './Student/StudentRegistered.jsx'
+import StudentLogin from './Student/StudentLogin.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -41,7 +42,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 //student routes
     <Route path="/student/studentcreate" element={<Student />} />
-    <Route path="/student/:studentUserName" element={<StudentRegistration />} />
+    <Route path="/student/login/" element={<StudentLogin />} />
+    <Route path="/student/:studentUserName" element={<StudentRegistered />} />
   </Routes>
   </BrowserRouter>
 )

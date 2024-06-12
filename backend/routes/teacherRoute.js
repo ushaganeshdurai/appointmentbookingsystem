@@ -5,7 +5,7 @@ import { Admin } from "../models/Admin/adminModel.js";
 import bcrypt from "bcrypt";
 //common route: teacher/scheduleappoitment
 
-// Route to create a new teacher and save
+// Route to create a authenticate teacher
 app.post("/", async (req, res) => {
   try {
     const { teacherUserName, teacherPwd } = req.body;

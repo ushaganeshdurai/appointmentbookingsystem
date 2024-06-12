@@ -34,7 +34,7 @@ navigate("/teacher");
     </div>
     
 </div>
-<button className='bg-black rounded-lg text-white' onClick={handlelogout}>LOG OUT</button>
+<button className='bg-black p-8 rounded-lg text-white relative ml-[450px]'  onClick={handlelogout}>LOG OUT</button>
     </div>
 
 
